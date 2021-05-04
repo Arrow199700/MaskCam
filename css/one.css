@@ -1,0 +1,83 @@
+#title {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 8vh;
+  width: 100%;
+  text-align: center;
+  display: block;
+  padding: 20px 0;
+}
+
+.one {
+  margin-top: 8vh;
+  width: 80%;
+  display: block;
+  padding: 30px;
+}
+
+.up, .down {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-bottom: 10px;
+  /* UP */
+  /* DOWN */
+}
+
+.up .up-left, .down .up-left {
+  width: 25%;
+}
+
+.up .up-left img, .down .up-left img {
+  width: 90%;
+  border-radius: 50%;
+}
+
+.up .up-right, .down .up-right {
+  width: 75%;
+}
+
+.up .down-left, .down .down-left {
+  width: 30%;
+}
+
+.up .down-right, .down .down-right {
+  width: 70%;
+}
+
+.two {
+  position: absolute;
+  right: 0;
+  top: 8vh;
+  width: 20%;
+  height: 90%;
+  padding: 0 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  justify-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.two .kpi h1 {
+  font-size: 56px;
+  text-align: center;
+}
+
+.two .kpi p {
+  font-size: 34px;
+  text-align: center;
+}
+/*# sourceMappingURL=one.css.map */
