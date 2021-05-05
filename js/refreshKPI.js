@@ -28,13 +28,13 @@ $( document ).ready(function() {
 
         if (xPrev != x || yPrev != y || zPrev != z ){
             console.log("If sì");
-            $(".up-left img").attr("src","img/alertarancione.png");
-            $(".up-left").append("<p>incremento mask 6 val</p>");
+            $(".up-left img").attr("src","img/immaginealertprova.jpg");
+            $(".up-left").append("<p>Detection Updated</p>");
             xPrev = x;
             yPrev = y;
             zPrev = z; 
         } else {
-            $(".up-left img").attr("src","img/immaginealertprova.jpg");
+            $(".up-left img").attr("src","img/alertverde.jpg");
             $(".up-left p").empty();
         }
 

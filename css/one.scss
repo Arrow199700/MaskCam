@@ -1,35 +1,53 @@
 #title{
-    position: absolute;
-    left:0; top: 0;
-    height: 8vh;
+    height: 0;
 
-    width: 100%;
+    width: auto;
     text-align: center;
-    display: block;
+    display: inline;
 
-    padding: 20px 0;
+    padding: 0;
 }
 
-.one{
-    margin-top: 8vh;
+.one{position: absolute;
+
+    right: 0;
     width: 80%;
     display: block;
-    padding: 30px;
+    padding: 20px;
+}
+
+.up-logo{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    img{
+        width: auto;
+        height: 80px;
+        margin: 0px 20px;
+    }
 }
 
 .up, .down{
     display: flex;
     align-items: center;
-    justify-content: space-between;
     margin-bottom: 10px;
 
     
     /* UP */
     .up-left{
+        position: absolute;
+        right: 0;
         width: 25%;
+        top: 10px;
         img{
-            width: 90%;
+            position: relative;
+            top: -25px;
+            right: -25px;
+            transform: translate(25%, 25%);
+            width: 60%;
             border-radius: 50%;
+            border-left:30px;
         }
     }
     .up-right{
@@ -38,20 +56,23 @@
 
     /* DOWN */
     .down-left{
-        width: 30%;
+        position: absolute;
+        right: 10px;
+        width: 23%;
     }
     .down-right{
-        width: 70%;
-    }
+        width: 75%;
+        height: -100px;
 
+    }
+    
 }
 
 .two {
     position: absolute;
-    right: 0;   top: 8vh;
-
+    left: 0; top: 100px;
     width: 20%;
-    height: 90%;
+    height: 80%;
     padding: 0 10px;
 
     display: flex;
@@ -62,13 +83,14 @@
 
     .kpi{
         h1{
-            font-size: 56px;
+            font-size: 35px;
             text-align: center;
+            
         }
         p{
-            font-size: 34px;
+            font-size: 23px;
             text-align: center;
         }
     }
-
+    
   }

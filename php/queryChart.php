@@ -46,44 +46,74 @@ console.log(ArrayLabels, "Labels OK");
 var ArrayHourMinute =
   <?php queryChart('select *
 from(select *,
-    DATE_FORMAT(time, "%H:%i") as ora_minuto
+    DATE_FORMAT(Istante, "%H:%i") as ora_minuto
     from mask_cam.mask
-    order by time desc
+    order by Istante desc
   limit 15) as y
   order by ora_minuto;', "ora_minuto");
   ?>;
 console.log(ArrayHourMinute, "HourMinute OK");
 
 //ARRAY FOR CountMask / ASSE Y
-var ArrayCountMask =
+var ArrayCountPickup =
   <?php queryChart('select *
 from (select count(*) as conteggio,
 	  label,
-      DATE_FORMAT(time, "%H:%i") as `ora_minuto`
+      DATE_FORMAT(Istante, "%H:%i") as `ora_minuto`
   from mask_cam.mask
-  where label="Mask"
+  where label="Pick-up"
   group by label, ora_minuto
   order by ora_minuto desc
   limit 15) as x
   order by ora_minuto;', "conteggio");
   ?>;
-console.log(ArrayCountMask, "Conteggio Mask OK");
+console.log(ArrayCountPickup, "Conteggio Pick-up OK");
 
 
 //ARRAY FOR CountNoMask / ASSE Y
-var ArrayCountNoMask =
+var ArrayCountSoldier =
   <?php queryChart('select *
 from (select count(*) as conteggio,
 	  label,
-      DATE_FORMAT(time, "%H:%i") as `ora_minuto`
+      DATE_FORMAT(Istante, "%H:%i") as `ora_minuto`
   from mask_cam.mask
-  where label="NoMask"
+  where label="Soldier"
   group by label, ora_minuto
   order by ora_minuto desc
   limit 15) as x
   order by ora_minuto;', "conteggio");
   ?>;
-console.log(ArrayCountNoMask, "Conteggio NoMask OK");
+console.log(ArrayCountSoldier, "Conteggio Soldier OK");
+
+//ARRAY FOR Pick-up / ASSE Y
+var ArrayCountTruck =
+  <?php queryChart('select *
+from (select count(*) as conteggio,
+	  label,
+      DATE_FORMAT(Istante, "%H:%i") as `ora_minuto`
+  from mask_cam.mask
+  where label="Truck"
+  group by label, ora_minuto
+  order by ora_minuto desc
+  limit 15) as x
+  order by ora_minuto;', "conteggio");
+  ?>;
+console.log(ArrayCountTruck, "Conteggio Truck OK");
+
+//ARRAY FOR Tanker / ASSE Y
+var ArrayCountTanker =
+  <?php queryChart('select *
+from (select count(*) as conteggio,
+	  label,
+      DATE_FORMAT(Istante, "%H:%i") as `ora_minuto`
+  from mask_cam.mask
+  where label="Tanker"
+  group by label, ora_minuto
+  order by ora_minuto desc
+  limit 15) as x
+  order by ora_minuto;', "conteggio");
+  ?>;
+console.log(ArrayCountTanker, "conteggio Tanker OK");
 
 
 </script>

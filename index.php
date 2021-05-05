@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <title>Mask Cam - MBC</title>
+    <title>Object Detection - MBC</title>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,17 +18,71 @@
   </head>
   
   <body>
+  
+  
+  <div class="up-logo">
+  <img src="img/imgregisc.png">
+  <h1 id="title"> Gestione e innovazione Sistemi di comando e controllo (prototipo 1) </h1>
+  <img src="img/imgregisc2.png">
+  </div>
+  
+  <section class="two">
+    <div class="kpi fade-in">
+      <p>People</p>
+      <h1>
+        <?php
+          include("php/query.php");
+          query('');
+        ?>
+      </h1>
+      
+    </div>
+    <div class="kpi fade-in">
+    <p>Pick-up Detected</p>
+      <h1>
+        <?php
+        query('WHERE label = "Pick-up"');
+        ?>
+      </h1>
+      
+    </div>
+    <div class="kpi fade-in">
+    <p>Soldier Detected</p>  
+      <h1>
+        <?php
+          query('WHERE label = "Soldier"');
+        ?>
+      </h1>
+      
+    </div>
+    <div class="kpi fade-in">
+    <p> Truck Detected </p>
+      <h1>
+        <?php
+          query('WHERE label = "Truck"');
+        ?>
+      </h1>
+    </div>
 
-  <h1 id="title"> MBC Mask Cam</h1>
-
+    <div class="kpi fade-in">
+    <p> Tanker Detected </p>
+      <h1>
+        <?php
+          query('WHERE label = "Tanker"');
+        ?>
+      </h1>
+    </div>
+  </section>
+  
   <section class="one">
+  
     <div class="up">
       <div class="up-left">
         <h2>Alert</h2>
-        <img src="img/immaginealertprova.jpg" >
+        <img src="img/alertverde.jpg" >
       </div>
       <div class="up-right">
-        <h2>Video</h2>
+        <h2> Spy-Cam </h2>
         <iframe width="100%" height="300" src="https://www.youtube.com/embed/lxLyLIL7OsU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
     </div>
@@ -38,46 +92,20 @@
         <h2> GIS </h2>
           <div class="mapouter">
           <div class="gmap_canvas">
-              <iframe width="100%" height="300px" id="gmap_canvas" src="https://maps.google.com/maps?q=viale%20luigi%20schiavonetti&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+              <iframe width="90%" height="300" id="gmap_canvas" src="https://maps.google.com/maps?q=viale%20luigi%20schiavonetti&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
               <a href="https://123movies-to.org"></a>
           </div>
       </div>
       </div>
       <div class="down-right">
-        <h2> Trend</h2>
+        <h2> Trend </h2>
         <canvas id="myChart"></canvas>
       </div>
     </div>
   </section>
 
 
-  <section class="two">
-    <div class="kpi fade-in">
-      <h1>
-        <?php
-          include("php/query.php");
-          query('');
-        ?>
-      </h1>
-      <p>People</p>
-    </div>
-    <div class="kpi fade-in">
-      <h1>
-        <?php
-        query('WHERE label = "Mask"');
-        ?>
-      </h1>
-      <p>Mask</p>
-    </div>
-    <div class="kpi fade-in">
-      <h1>
-        <?php
-          query('WHERE label = "NoMask"');
-        ?>
-      </h1>
-      <p>No mask</p>
-    </div>
-  </section>
+  
 
   <?php include("php/queryChart.php"); ?>
 
@@ -88,9 +116,9 @@
   <p id="p1"><?php
     queryChart('select *
       from(select *,
-        DATE_FORMAT(time, "%H:%i") as ora_minuto
+        DATE_FORMAT(Istante, "%H:%i") as ora_minuto
         from mask_cam.mask
-        order by time desc
+        order by Istante desc
         limit 15) as y
       order by ora_minuto;', "ora_minuto");
       ?></p>
@@ -98,9 +126,9 @@
   <p id="p2"><?php
     queryChart('select *
       from (select count(*) as conteggio,
-        label, DATE_FORMAT(time, "%H:%i") as `ora_minuto`
+        label, DATE_FORMAT(Istante, "%H:%i") as `ora_minuto`
         from mask_cam.mask
-        where label="Mask"
+        where label="Pick-up"
         group by label, ora_minuto
         order by ora_minuto desc
         limit 15) as x
@@ -110,9 +138,33 @@
   <p id="p3"><?php
     queryChart('select *
       from (select count(*) as conteggio,
-        label, DATE_FORMAT(time, "%H:%i") as `ora_minuto`
+        label, DATE_FORMAT(Istante, "%H:%i") as `ora_minuto`
         from mask_cam.mask
-        where label="NoMask"
+        where label="Soldier"
+        group by label, ora_minuto
+        order by ora_minuto desc
+        limit 15) as x
+      order by ora_minuto;', "conteggio");
+    ?></p>
+
+<p id="p4"><?php
+    queryChart('select *
+      from (select count(*) as conteggio,
+        label, DATE_FORMAT(Istante, "%H:%i") as `ora_minuto`
+        from mask_cam.mask
+        where label="Truck"
+        group by label, ora_minuto
+        order by ora_minuto desc
+        limit 15) as x
+      order by ora_minuto;', "conteggio");
+    ?></p>
+  
+  <p id="p5"><?php
+    queryChart('select *
+      from (select count(*) as conteggio,
+        label, DATE_FORMAT(Istante, "%H:%i") as `ora_minuto`
+        from mask_cam.mask
+        where label="Tanker"
         group by label, ora_minuto
         order by ora_minuto desc
         limit 15) as x

@@ -19,10 +19,14 @@ np.array(confidence)
 
 label = []
 for i in range(10000):
-    if confidence[i] > 0.55:
-        label.append("Mask")
+    if confidence[i] > 0 and confidence[i] < 0.10:
+        label.append("Truck")
+    elif confidence[i] > 0.10 and confidence[i] <= 0.20:
+        label.append("Pick-up")
+    elif confidence[i] > 0.20 and confidence[i] <= 0.55:
+        label.append("Tanker")
     else:
-        label.append("NoMask")
+        label.append("Soldier")
 
 """
 success = []
@@ -55,7 +59,7 @@ for i in Time:
 
 data = pd.DataFrame({'person_id': person_id,
                     'label': label,
-                    'time': Time,
+                    'Istante': Time,
                     'confidence': confidence,
                     'latitude': 41.84504023625275,
                     'longitude': 12.616878084119124
