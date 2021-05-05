@@ -17,11 +17,14 @@ $( document ).ready(function() {
 
         //creo variabili per poter inserire l'alert legato al refreshing del kpi..
         x = parseInt(document.querySelector(".kpi:nth-child(1) h1").textContent, 10);
-        console.log(xPrev, x);
         y = parseInt(document.querySelector(".kpi:nth-child(2) h1").textContent, 10);
-        console.log(yPrev, y);
         z = parseInt(document.querySelector(".kpi:nth-child(3) h1").textContent, 10);
+
+        /*
+        console.log(xPrev, x);
+        console.log(yPrev, y);
         console.log(zPrev, z);
+        */
 
         if (xPrev != x || yPrev != y || zPrev != z ){
             console.log("If sì");
@@ -39,6 +42,6 @@ $( document ).ready(function() {
 
     }, 
 
-    //Refresh every 5 seconds
-    5000);
+    //Refresh every 10 seconds
+    10000);
 });

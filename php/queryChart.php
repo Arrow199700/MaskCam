@@ -35,8 +35,6 @@ function queryChart($sql,$field){
 
 <script type="text/javascript">
 //SEND TO JAVASCRIPT
-//setInterval(() => {
-  
 
 //ARRAY FOR LABELS (Mask/NoMask)
 var ArrayLabels = 
@@ -86,8 +84,6 @@ from (select count(*) as conteggio,
   order by ora_minuto;', "conteggio");
   ?>;
 console.log(ArrayCountNoMask, "Conteggio NoMask OK");
-
-//}, 10000);
 
 
 </script>

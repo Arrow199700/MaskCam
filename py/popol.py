@@ -46,7 +46,6 @@ for i in range(10000):
                             )
    Time.append(time)
 
- 
 
 Time.sort()
 """
@@ -75,12 +74,12 @@ connection = pymysql.connect(host='localhost',
 cursor=connection.cursor()
 
 #executor
-cursor.execute("Create database if not exists MaskDetect")
+#cursor.execute("Create database if not exists MaskDetect")
 
 
-cursor.execute(
- "create table if not exists Mask(person_id varchar(4), label varchar(10), Time char(19), confidence dec(10,9), latitude varchar(20), longitude varchar(20))"
-             )
+#cursor.execute(
+#"create table if not exists Mask(person_id varchar(4), label varchar(10), Time char(19), confidence dec(10,9), latitude varchar(20), longitude varchar(20))"
+#             )
 
 
 cols = "`,`".join([i for i in data.columns.tolist()])

@@ -44,7 +44,7 @@
       </div>
       </div>
       <div class="down-right">
-        <h2> Trend <button class= "btn btn-success" onclick="updateChart()">update</button> </h2>
+        <h2> Trend</h2>
         <canvas id="myChart"></canvas>
       </div>
     </div>
@@ -79,12 +79,13 @@
     </div>
   </section>
 
-  <div class="ref">
-  <h1><?php  
-    include("php/queryChart.php");
-    //ARRAY FOR LABELS (Mask/NoMask) 
-    queryChart("SELECT label FROM mask_cam.mask group by label", "label");
+  <?php include("php/queryChart.php"); ?>
 
+  <div class="ref">
+  <p id="p0"><?php queryChart("SELECT label FROM mask_cam.mask group by label", "label");
+    ?></p>
+
+  <p id="p1"><?php
     queryChart('select *
       from(select *,
         DATE_FORMAT(time, "%H:%i") as ora_minuto
@@ -92,7 +93,9 @@
         order by time desc
         limit 15) as y
       order by ora_minuto;', "ora_minuto");
+      ?></p>
 
+  <p id="p2"><?php
     queryChart('select *
       from (select count(*) as conteggio,
         label, DATE_FORMAT(time, "%H:%i") as `ora_minuto`
@@ -102,7 +105,9 @@
         order by ora_minuto desc
         limit 15) as x
       order by ora_minuto;', "conteggio");
+    ?></p>
 
+  <p id="p3"><?php
     queryChart('select *
       from (select count(*) as conteggio,
         label, DATE_FORMAT(time, "%H:%i") as `ora_minuto`
@@ -112,8 +117,7 @@
         order by ora_minuto desc
         limit 15) as x
       order by ora_minuto;', "conteggio");
-    ?>;
-    </h1>
+    ?></p>
 </div>
 
 

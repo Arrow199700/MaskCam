@@ -40,24 +40,14 @@ var myChart = new Chart(ctx, {
         }
     }
 });
-/*
-function updateChart() {
-
-    myChart.data.datasets[0].data = [1, 2, 3, 4, 45];
-    myChart.data.datasets[1].data = [ArrayCountNoMask][0];
-
-    myChart.update();
-
-};
-*/
-
 
 
 setInterval(function(){ 
-    myChart.data.datasets[0].data = [ArrayCountMask][0];
-    myChart.data.datasets[1].data = [ArrayCountNoMask][0];
-
-   myChart.update();
+    myChart.data.labels = JSON.parse($("#p1")[0].innerHTML);
+    myChart.data.datasets[0].data = JSON.parse($("#p2")[0].innerHTML);
+    myChart.data.datasets[1].data = JSON.parse($("#p3")[0].innerHTML);
+    myChart.update();
+    
     console.log("Chart updated.");
-}, 10000);
+}, 5000);
 
