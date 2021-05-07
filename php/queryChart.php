@@ -36,7 +36,7 @@ function queryChart($sql,$field){
 <script type="text/javascript">
 //SEND TO JAVASCRIPT
 
-//ARRAY FOR LABELS (Mask/NoMask)
+
 var ArrayLabels = 
     <?php queryChart("SELECT label FROM mask_cam.mask group by label", "label") ?>;
     // Printing the passed array elements
@@ -49,7 +49,7 @@ from(select *,
     DATE_FORMAT(Istante, "%H:%i") as ora_minuto
     from mask_cam.mask
     order by Istante desc
-  limit 15) as y
+  limit 30) as y
   order by ora_minuto;', "ora_minuto");
   ?>;
 console.log(ArrayHourMinute, "HourMinute OK");
@@ -64,7 +64,7 @@ from (select count(*) as conteggio,
   where label="Pick-up"
   group by label, ora_minuto
   order by ora_minuto desc
-  limit 15) as x
+  limit 30) as x
   order by ora_minuto;', "conteggio");
   ?>;
 console.log(ArrayCountPickup, "Conteggio Pick-up OK");
@@ -80,7 +80,7 @@ from (select count(*) as conteggio,
   where label="Soldier"
   group by label, ora_minuto
   order by ora_minuto desc
-  limit 15) as x
+  limit 30) as x
   order by ora_minuto;', "conteggio");
   ?>;
 console.log(ArrayCountSoldier, "Conteggio Soldier OK");
@@ -95,7 +95,7 @@ from (select count(*) as conteggio,
   where label="Truck"
   group by label, ora_minuto
   order by ora_minuto desc
-  limit 15) as x
+  limit 30) as x
   order by ora_minuto;', "conteggio");
   ?>;
 console.log(ArrayCountTruck, "Conteggio Truck OK");
@@ -110,11 +110,14 @@ from (select count(*) as conteggio,
   where label="Tanker"
   group by label, ora_minuto
   order by ora_minuto desc
-  limit 15) as x
+  limit 30) as x
   order by ora_minuto;', "conteggio");
   ?>;
 console.log(ArrayCountTanker, "conteggio Tanker OK");
 
 
 </script>
+
+
+
 

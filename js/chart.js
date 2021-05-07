@@ -11,10 +11,10 @@ var myChart = new Chart(ctx, {
             label: ArrayLabels[0],
             data: [ArrayCountPickup][0],
             borderColor: [
-                'rgb(232, 197, 71)'
+                'rgb(255,255,0)'
             ],
             fill: true,
-            backgroundColor:'rgba(232, 197, 71, 0.3)',
+            backgroundColor:'rgba(255,255,0, 0.3)',
             borderWidth: 2
         },
         //Conteggio Soldier
@@ -22,21 +22,21 @@ var myChart = new Chart(ctx, {
             label: ArrayLabels[1],
             data: [ArrayCountSoldier][0],
             borderColor: [
-                'rgb(248, 244, 249)'
+                'rgb(243,165,005)'
             ],
             fill: true,
-            backgroundColor:'rgba(248, 244, 249, 0.3)',
+            backgroundColor:'rgba(243,165,005, 0.3)',
             borderWidth: 2
         },
-        //Conteggio Tru
+        //Conteggio Truck
         {
             label: ArrayLabels[2],
             data: [ArrayCountTruck][0],
             borderColor: [
-                'rgb(190, 167, 229)'
+                'rgb(125,127,120)'
             ],
             fill: true,
-            backgroundColor:'rgba(190, 167, 229, 0.3)',
+            backgroundColor:'rgba(125,127,120, 0.3)',
             borderWidth: 2
         },
         //Conteggio Tanker
@@ -44,10 +44,10 @@ var myChart = new Chart(ctx, {
             label: ArrayLabels[3],
             data: [ArrayCountTanker][0],
             borderColor: [
-                'rgb(214, 73, 51)'
+                'rgb(0,0,255)'
             ],
             fill: true,
-            backgroundColor:'rgba(214, 73, 51, 0.3)',
+            backgroundColor:'rgba(0,0,255, 0.3)',
             borderWidth: 2
         }
     ],
@@ -75,5 +75,5 @@ setInterval(function(){
     myChart.update();
     
     console.log("Chart updated.");
-}, 11000);
+}, 10000);
 

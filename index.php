@@ -22,14 +22,14 @@
   
   <div class="up-logo">
   <img src="img/imgregisc.png">
-  <h1 id="title"> Gestione e innovazione Sistemi di comando e controllo (prototipo 1) </h1>
+  <h4 id="title"> Gestione e innovazione Sistemi di comando e controllo (prototipo 1) </h4>
   <img src="img/imgregisc2.png">
   </div>
   
   <section class="two">
     <div class="kpi fade-in">
-      <p>People</p>
-      <h1>
+      <p style="color:red;">People</p>
+      <h1 style="color:red;">
         <?php
           include("php/query.php");
           query('');
@@ -38,8 +38,8 @@
       
     </div>
     <div class="kpi fade-in">
-    <p>Pick-up Detected</p>
-      <h1>
+    <p style="color:yellow;">Pick-up</p>
+      <h1 style="color:yellow;">
         <?php
         query('WHERE label = "Pick-up"');
         ?>
@@ -47,8 +47,8 @@
       
     </div>
     <div class="kpi fade-in">
-    <p>Soldier Detected</p>  
-      <h1>
+    <p style="color:orange;">car</p>  
+      <h1 style="color:orange;">
         <?php
           query('WHERE label = "Soldier"');
         ?>
@@ -56,8 +56,8 @@
       
     </div>
     <div class="kpi fade-in">
-    <p> Truck Detected </p>
-      <h1>
+    <p style="color:grey;"> Truck</p>
+      <h1 style="color:grey;">
         <?php
           query('WHERE label = "Truck"');
         ?>
@@ -65,47 +65,48 @@
     </div>
 
     <div class="kpi fade-in">
-    <p> Tanker Detected </p>
-      <h1>
+    <p style="color:blue;"> Tanker</p>
+      <h1 style="color:blue;">
         <?php
           query('WHERE label = "Tanker"');
         ?>
       </h1>
     </div>
-  </section>
-  
-  <section class="one">
-  
-    <div class="up">
-      <div class="up-left">
-        <h2>Alert</h2>
-        <img src="img/alertverde.jpg" >
-      </div>
-      <div class="up-right">
-        <h2> Spy-Cam </h2>
-        <iframe width="100%" height="300" src="https://www.youtube.com/embed/lxLyLIL7OsU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      </div>
-    </div>
 
-    <div class="down">
-      <div class="down-left">
-        <h2> GIS </h2>
+    <div class="down-gis">
           <div class="mapouter">
           <div class="gmap_canvas">
-              <iframe width="90%" height="300" id="gmap_canvas" src="https://maps.google.com/maps?q=viale%20luigi%20schiavonetti&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+              <iframe width="100%" height="300" id="gmap_canvas" src="https://maps.google.com/maps?q=viale%20luigi%20schiavonetti&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
               <a href="https://123movies-to.org"></a>
           </div>
       </div>
+    </div>
+
+
+  </section>
+  
+  <section class="one">
+    
+    <div class="up">
+      <div class="up-left">
+        <h2>Alert</h2>
       </div>
+      <div class="up-right">
+        <h3> VARIABLE1 </h3>
+        <video  width="100%" height="400" controls="controls" src="videoprovaobj1.mp4" type="video/mp4" >
+        </video>
+      </div>
+    </div>
+      
+    <div class="down">
+
+      
       <div class="down-right">
-        <h2> Trend </h2>
+    
         <canvas id="myChart"></canvas>
       </div>
     </div>
   </section>
-
-
-  
 
   <?php include("php/queryChart.php"); ?>
 
@@ -119,7 +120,7 @@
         DATE_FORMAT(Istante, "%H:%i") as ora_minuto
         from mask_cam.mask
         order by Istante desc
-        limit 15) as y
+        limit 30) as y
       order by ora_minuto;', "ora_minuto");
       ?></p>
 
@@ -131,7 +132,7 @@
         where label="Pick-up"
         group by label, ora_minuto
         order by ora_minuto desc
-        limit 15) as x
+        limit 30) as x
       order by ora_minuto;', "conteggio");
     ?></p>
 
@@ -143,7 +144,7 @@
         where label="Soldier"
         group by label, ora_minuto
         order by ora_minuto desc
-        limit 15) as x
+        limit 30) as x
       order by ora_minuto;', "conteggio");
     ?></p>
 
@@ -155,7 +156,7 @@
         where label="Truck"
         group by label, ora_minuto
         order by ora_minuto desc
-        limit 15) as x
+        limit 30) as x
       order by ora_minuto;', "conteggio");
     ?></p>
   
@@ -167,7 +168,7 @@
         where label="Tanker"
         group by label, ora_minuto
         order by ora_minuto desc
-        limit 15) as x
+        limit 30) as x
       order by ora_minuto;', "conteggio");
     ?></p>
 </div>
@@ -184,10 +185,19 @@
 <script type="text/javascript">
 
 setInterval(() => {
-   xPrev = <?php query(''); ?>;
-   yPrev = <?php query('WHERE label = "Mask"'); ?>;
-   zPrev = <?php query('WHERE label = "NoMask"'); ?>; 
-}, 5000);
+  $.ajax({
+    url: 'php/popolauto.php',
+    type: 'GET',
+    success: function(result){
+
+    },
+
+    error: function (xhr, ajaxOptions, thrownError) {
+
+  }
+
+  });
+}, 10000);
 
 </script>
 

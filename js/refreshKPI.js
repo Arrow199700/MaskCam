@@ -25,21 +25,23 @@ $( document ).ready(function() {
         console.log(yPrev, y);
         console.log(zPrev, z);
         */
-
+            
+        
         if (xPrev != x || yPrev != y || zPrev != z ){
             console.log("If sì");
-            $(".up-left img").attr("src","img/immaginealertprova.jpg");
-            $(".up-left").append("<p>Detection Updated</p>");
+            $(".up-left").append("<p>object release</p>");
             xPrev = x;
             yPrev = y;
-            zPrev = z; 
+            zPrev = z;
+            setTimeout(function(){
+                $(".up-left p").remove();
+            }, 6000);
+
         } else {
-            $(".up-left img").attr("src","img/alertverde.jpg");
-            $(".up-left p").empty();
+            $(".up-left p").remove();
         }
 
         console.log("Updated!");
-
     }, 
 
     //Refresh every 10 seconds

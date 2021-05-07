@@ -7,18 +7,18 @@ from randomtimestamp import randomtimestamp
 
 
 person_id = []
-for i in range(10000):
+for i in range(10):
     n = 1
     person_id.append(n)
 
 confidence = []
-for i in range(10000):
+for i in range(10):
     n = np.random.uniform(0,1)
     confidence.append(n)
 np.array(confidence)
 
 label = []
-for i in range(10000):
+for i in range(10):
     if confidence[i] > 0 and confidence[i] < 0.10:
         label.append("Truck")
     elif confidence[i] > 0.10 and confidence[i] <= 0.20:
@@ -44,7 +44,7 @@ np.array(success)
 import datetime
 
 Time = []
-for i in range(10000):
+for i in range(10):
    time = datetime.datetime(2021, int(np.random.uniform(1, 12)), int(np.random.uniform(1, 28)), 
              int(np.random.uniform(1, 24)), int(np.random.uniform(1, 59)), int(np.random.uniform(1, 59))
                             )

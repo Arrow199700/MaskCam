@@ -42,12 +42,11 @@
           align-items: center;
   margin-bottom: 10px;
   /* UP */
-  /* DOWN */
 }
 
 .up .up-left, .down .up-left {
   position: absolute;
-  right: 0;
+  right: -20px;
   width: 25%;
   top: 10px;
 }
@@ -55,7 +54,7 @@
 .up .up-left img, .down .up-left img {
   position: relative;
   top: -25px;
-  right: -25px;
+  right: 0px;
   -webkit-transform: translate(25%, 25%);
           transform: translate(25%, 25%);
   width: 60%;
@@ -63,28 +62,26 @@
   border-left: 30px;
 }
 
+.up .up-left p, .down .up-left p {
+  color: crimson;
+}
+
 .up .up-right, .down .up-right {
   width: 75%;
 }
 
-.up .down-left, .down .down-left {
-  position: absolute;
-  right: 10px;
-  width: 23%;
-}
-
-.up .down-right, .down .down-right {
-  width: 75%;
+.down-right {
+  left: 0;
+  width: 100%;
   height: -100px;
 }
 
 .two {
+  /* DOWN */
   position: absolute;
   left: 0;
   top: 100px;
   width: 20%;
-  height: 80%;
-  padding: 0 10px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -97,13 +94,22 @@
       justify-content: space-around;
 }
 
+.two .kpi {
+  padding: 30px;
+  border: 1px solid darkred;
+  margin-bottom: 5px;
+}
+
 .two .kpi h1 {
-  font-size: 35px;
-  text-align: center;
+  font-size: 20px;
+  text-align: right;
+  -webkit-box-pack: inherit;
+      -ms-flex-pack: inherit;
+          justify-content: inherit;
 }
 
 .two .kpi p {
-  font-size: 23px;
-  text-align: center;
+  font-size: 30px;
+  height: 0;
 }
 /*# sourceMappingURL=one.css.map */
