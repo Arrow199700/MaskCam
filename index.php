@@ -93,7 +93,7 @@
       </div>
       <div class="up-right">
         <h3> VARIABLE1 </h3>
-        <video  width="100%" height="400" controls="controls" src="videoprovaobj1.mp4" type="video/mp4" >
+        <video  width="100%" height="400" controls="controls" src="videostretch1.mp4" type="video/mp4" >
         </video>
       </div>
     </div>
@@ -104,10 +104,11 @@
       <div class="down-right">
     
         <canvas id="myChart"></canvas>
+
       </div>
     </div>
   </section>
-
+  
   <?php include("php/queryChart.php"); ?>
 
   <div class="ref">
@@ -197,7 +198,7 @@ setInterval(() => {
   }
 
   });
-}, 10000);
+}, 15000);
 
 </script>
 

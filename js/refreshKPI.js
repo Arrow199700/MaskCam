@@ -29,16 +29,16 @@ $( document ).ready(function() {
         
         if (xPrev != x || yPrev != y || zPrev != z ){
             console.log("If sì");
-            $(".up-left").append("<p>object release</p>");
+            $(".up-left").append("<h4>object release at "+ ArrayHourMinute[0] + "</h4>");
             xPrev = x;
             yPrev = y;
             zPrev = z;
             setTimeout(function(){
-                $(".up-left p").remove();
+                $(".up-left h4").remove();
             }, 6000);
 
         } else {
-            $(".up-left p").remove();
+            $(".up-left h4").remove();
         }
 
         console.log("Updated!");
