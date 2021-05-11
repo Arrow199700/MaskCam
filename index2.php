@@ -1,5 +1,12 @@
 <?php include_once("php/queryChart.php"); ?>
+<?php
+    $color1 = "#548235";
+    $color2 = "#2F5597";
+    $color3 = "#FF0000";
+    $color4 = "#D60093";
+    $color5 = "#FFFF00";
 
+?>
 <!DOCTYPE html>
 <html lang="it" class="h-100">
 
@@ -12,9 +19,7 @@
     <script src="js/jquery-3.6.0.js" ></script>
     <script src="js/lib_chart.js"></script>  
  
-    <script src="js/functions.js"></script>
-
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css"  rel="stylesheet" />
 
 </head>
@@ -24,33 +29,33 @@
     <div class="row">
         <div class="col-1"><img src="img/imgregisc.png" /></div>
         <div class="col-10">
-            <div class="title1 text-center">Gestione e Innovazione Sistemi di Comando e Controllo</div>
-            <div class="title2 text-center">Gruppo Innovazione, Sviluppo e Sperimentazione C4-ISR</div>
+            <div class="title1 text-center">Gestione e Innovazione Sistemi di Comando e Controllo - Gruppo Innovazione, Sviluppo e Sperimentazione C4-ISR</div>
+            <div class="title2 text-center">Sistema Advanced Recognition and Exploitation System</div>
         </div>
         <div class="col-1"><img src="img/imgregisc2.png" /></div>
     </div>
     <div class="row">
         <div class="col-3">
             <div class="kpi_list">
-                <div class="row kpi_item">
-                    <div class="col-4">Persone</div>
-                    <div id="nIndividual" class="col-4">3</div>
+                <div class="row kpi_item" style="color: <?php echo $color1 ?> !important;">
+                    <div class="col-6 kpi_label">Individual</div>
+                    <div id="nIndividual" class="col-6 kpi_value"></div>
                 </div>
-                <div class="row kpi_item">
-                    <div class="col-4">Auto</div>
-                    <div id="nCar" class="col-4">3</div>
+                <div class="row kpi_item" style="color: <?php echo $color2 ?> !important;">
+                    <div class="col-6 kpi_label">Car</div>
+                    <div id="nCar" class="col-6 kpi_value"></div>
                 </div>
-                <div class="row kpi_item">
-                    <div class="col-4">Excavator</div>
-                    <div id="nExcavator" class="col-4">3</div>
+                <div class="row kpi_item" style="color: <?php echo $color3 ?> !important;">
+                    <div class="col-6 kpi_label">Excavator</div>
+                    <div id="nExcavator" class="col-6 kpi_value"></div>
                 </div>
-                <div class="row kpi_item">
-                    <div class="col-4">Pick-up</div>
-                    <div id="nPickUp" class="col-4">3</div>
+                <div class="row kpi_item" style="color: <?php echo $color4 ?> !important;">
+                    <div class="col-6 kpi_label">Pick-Up</div>
+                    <div id="nPickUp" class="col-6 kpi_value"></div>
                 </div>
-                <div class="row kpi_item">
-                    <div class="col-4">Truck</div>
-                    <div id="nTruck" class="col-4">3</div>
+                <div class="row kpi_item" style="color: <?php echo $color5 ?> !important;">
+                    <div class="col-6 kpi_label">Truck</div>
+                    <div id="nTruck" class="col-6 kpi_value"></div>
                 </div>
             </div>
             <div class="drone">
@@ -86,7 +91,7 @@
     var ArrayCountPickup = Array();
     var ArrayCountIndividual = Array();
     var ArrayCountTruck = Array();
-    var ArrayCountTanker = Array();
+    var ArrayCountExcavator = Array();
     var ArrayCountCar = Array();
 
     var ArrayHourMinute = Array();
@@ -126,14 +131,14 @@
             }
         });
     }    
-    function LoadArrayTanker() {
+    function LoadArrayExcavator() {
         return $.ajax({
             method: "POST",
             url: "php/queryChartParams.php",
             data: { label: "Excavator" },
             success: function(result){
                 var arRes = JSON.parse(result);
-                arRes.forEach(element =>ArrayCountTanker.push(element));
+                arRes.forEach(element =>ArrayCountExcavator.push(element));
             }
         });
     }    
@@ -175,47 +180,69 @@
         ArrayCountPickup = Array();
         ArrayCountIndividual = Array();
         ArrayCountTruck = Array();
-        ArrayCountTanker = Array();
+        ArrayCountExcavator = Array();
         ArrayCountCar = Array();
 
         $.when(
             LoadArrayPickup(),
             LoadArrayIndividual(),
             LoadArrayCar(),
-            LoadArrayTanker(),
-            LoadArrayTruck()
+            LoadArrayExcavator(),
+            LoadArrayTruck(),
+            LoadArrayAsseX()
             ).done(function(response)
         {
 
-            myChart.data.datasets[0].data = ArrayCountPickup;
-            myChart.data.datasets[1].data = ArrayCountIndividual;
-            myChart.data.datasets[2].data = ArrayCountTruck;
-            myChart.data.datasets[3].data = ArrayCountTanker;
+            myChart.data.datasets[0].data = ArrayCountIndividual;
+            myChart.data.datasets[1].data = ArrayCountCar;
+            myChart.data.datasets[2].data = ArrayCountExcavator;
+            myChart.data.datasets[3].data = ArrayCountPickup;
+            myChart.data.datasets[4].data = ArrayCountPickup;
+            myChart.data.labels = ArrayHourMinute;
+            ArrayCountTruck
             myChart.update();
         });
         console.log("Chart updated.");
     }
 
+    function LoadArrayAsseX() {
+        ArrayHourMinute = Array();
+        var sql = 'select * from(select *, DATE_FORMAT(Istante, "%H:%i") as ora_minuto from mask_cam.mask order by convert(Istante,DATETIME) desc ) as y order by convert(Istante,DATETIME) DESC LIMIT 30;';
+        var field = 'ora_minuto';
+        return $.ajax({
+            method: "POST",
+            url: "php/queryChart.php",
+            data: { 
+                "sql": sql,
+                "field": field
+             },
+            success: function(result){
+                var arRes = JSON.parse(result);
+                arRes.forEach(element =>ArrayHourMinute.push(element));
+                console.log(ArrayHourMinute, "HourMinute OK");
+            }
+        });
+    }    
     function CreaGrafico()
     {
-        ArrayLabels = <?php queryChart("SELECT label FROM mask_cam.mask group by label", "label") ?>;
+        ArrayLabels = ["Individual" , "Car", "Excavator" , "Pick-Up" , "Truck"];
             // Printing the passed array elements
         console.log(ArrayLabels, "Labels OK");
 
-        //ARRAY FOR HOURMINUTE (H/M) ASSE X
-        ArrayHourMinute = <?php queryChart('select *
-        from(select *,
-            DATE_FORMAT(Istante, "%H:%i") as ora_minuto
-            from mask_cam.mask
-            order by Istante desc
-        limit 30) as y
-        order by ora_minuto;', "ora_minuto");
-        ?>;
-        console.log(ArrayHourMinute, "HourMinute OK");
         var ctx = document.getElementById("myChart").getContext('2d');
         console.log("Update chart");
         myChart = new Chart(ctx, {  
             type: 'line',
+            plugins: {
+                tooltip: {
+                    mode: 'index'
+                }
+            },
+            interaction: {
+                mode: 'nearest',
+                axis: 'x',
+                intersect: false
+            },
             data: {
                 //Asse X
                 labels: [ArrayHourMinute][0],
@@ -223,37 +250,46 @@
                 //Conteggio Pick-up
                     {
                     label: ArrayLabels[0],
-                    data: [ArrayCountPickup][0],
-                    backgroundColor: 'rgb(255,255,0)',
-                    borderColor:'rgb(255,255,0)',
+                    data: [ArrayCountIndividual][0],
+                    backgroundColor: '<?php echo $color1 ?>',
+                    borderColor:'<?php echo $color1 ?>',
                     fill: true,
                     borderWidth: 2
                 },
                 //Conteggio Soldier
                 {
                     label: ArrayLabels[1],
-                    data: [ArrayCountIndividual][0],
-                    borderColor: 'rgb(243,165,005)',
+                    data: [ArrayCountCar][0],
+                    borderColor: '<?php echo $color2 ?>',
                     fill: true,
-                    backgroundColor:'rgb(243,165,005)',
+                    backgroundColor:'<?php echo $color2 ?>',
                     borderWidth: 2
                 },
                 //Conteggio Truck
                 {
                     label: ArrayLabels[2],
-                    data: [ArrayCountTruck][0],
-                    borderColor: 'rgb(125,127,120)',
+                    data: [ArrayCountExcavator][0],
+                    borderColor: '<?php echo $color3 ?>',
                     fill: true,
-                    backgroundColor:'rgb(125,127,120)',
+                    backgroundColor:'<?php echo $color3 ?>',
                     borderWidth: 2
                 },
                 //Conteggio Tanker
                 {
                     label: ArrayLabels[3],
-                    data: [ArrayCountTanker][0],
-                    borderColor: 'rgb(0,0,255)',
+                    data: [ArrayCountPickup][0],
+                    borderColor: '<?php echo $color4 ?>',
                     fill: true,
-                    backgroundColor:'rgb(0,0,255)',
+                    backgroundColor:'<?php echo $color4 ?>',
+                    borderWidth: 2
+                },
+                //Conteggio Truck
+                {
+                    label: ArrayLabels[4],
+                    data: [ArrayCountTruck][0],
+                    borderColor: '<?php echo $color5 ?>',
+                    fill: true,
+                    backgroundColor:'<?php echo $color5 ?>',
                     borderWidth: 2
                 }
                 ],
@@ -263,7 +299,8 @@
                 maintainAspectRatio: false,
                 scales: {
                     y: {
-                        beginAtZero: true
+                        beginAtZero: true,
+                        stacked: true
                     }
                 }
             }
@@ -302,8 +339,9 @@ $(document).ready(function(){
     LoadArrayPickup(),
     LoadArrayIndividual(),
     LoadArrayCar(),
-    LoadArrayTanker(),
-    LoadArrayTruck()
+    LoadArrayExcavator(),
+    LoadArrayTruck(),
+    LoadArrayAsseX()
     ).done(function(response)
     {
         CreaGrafico();
@@ -312,12 +350,13 @@ $(document).ready(function(){
     // $.when(LoadArrayObjects("Pick-up",this.ArrayCountPickup) , 
     //         LoadArrayObjects("Indiviual",this.ArrayCountIndividual),
     //         LoadArrayObjects("Truck",this.ArrayCountTruck),
-    //         LoadArrayObjects("Excavator",this.ArrayCountTanker)
+    //         LoadArrayObjects("Excavator",this.ArrayCountExcavator)
     //     ).done(function(response)
     //     {
     //         CreaGrafico();
     //     });
     setInterval(AggiornaGrafico, 1000);
+    setInterval(PopulateKPI, 1000);
     setInterval(popolaDB,  1000);
 });
 
