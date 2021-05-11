@@ -1,0 +1,39 @@
+body{
+    background-color: black !important;
+    color: white !important;
+    font-family: 'Calibri';
+    font-size: 18px;
+}
+.title1
+{
+    padding-top: 25px;
+    font-size:  large;
+}
+.title2
+{
+    padding-top: 5px;
+    font-size: medium;
+}
+.kpi_list
+{
+    padding-top: 50px;
+}
+.ctnAlert
+{
+    height: 300px;
+    min-height: 300px;
+}
+.drone
+{
+  background-image: url('../img/drone_4.png');
+  background-size: cover;
+  background-position: center;
+  width: 383px;
+  height: 184px;
+  margin-top: 80px;
+}
+.vidoeTitle
+{
+    color: #355222;
+    font-style: italic;
+}

@@ -27,6 +27,12 @@
           justify-content: space-between;
 }
 
+.up-logo img {
+  width: auto;
+  height: 80px;
+  margin: 0px 20px;
+}
+
 .up, .down {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -40,7 +46,7 @@
 
 .up .up-left, .down .up-left {
   position: absolute;
-  right: -50px;
+  right: -20px;
   width: 25%;
   top: 10px;
 }
@@ -56,14 +62,12 @@
   border-left: 30px;
 }
 
-.up .up-left h4, .down .up-left h4 {
+.up .up-left p, .down .up-left p {
   color: crimson;
-  border: 10px solid black;
-  background-color: #0a0a0a;
 }
 
 .up .up-right, .down .up-right {
-  width: 100%;
+  width: 75%;
 }
 
 .down-right {
@@ -107,5 +111,13 @@
 .two .kpi p {
   font-size: 30px;
   height: 0;
+}
+
+.drone
+{
+  background-image: url('../img/drone_4.png');
+  background-size: contain;
+  width: 230px;
+  height: 110px;
 }
 /*# sourceMappingURL=one.css.map */

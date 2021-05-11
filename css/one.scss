@@ -21,6 +21,11 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    img{
+        width: auto;
+        height: 80px;
+        margin: 0px 20px;
+    }
 }
 
 .up, .down{
@@ -32,10 +37,9 @@
     /* UP */
     .up-left{
         position: absolute;
-        right: -50px;
+        right: -20px;
         width: 25%;
         top: 10px;
-        
             img{
             position: relative;
             top: -25px;
@@ -45,15 +49,12 @@
             border-radius: 50%;
             border-left:30px;
             }
-            h4{  
+            p{
                 color:crimson;
-                border: 10px solid black;
-                background-color: rgb(10, 10, 10);
-
             }
     }
     .up-right{
-        width: 100%;
+        width: 75%;
     }
 
     
@@ -61,10 +62,11 @@
 }
 
 .down-right{
-        left: 0;
+    left: 0;
         width: 100%;
         height: -100px;
-}
+
+    }
 
 .two {
 

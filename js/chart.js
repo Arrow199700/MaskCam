@@ -56,7 +56,6 @@ var myChart = new Chart(ctx, {
         responsive: true,
         maintainAspectRatio: false,
         scales: {
-               
             y: {
                 beginAtZero: true
             }
@@ -77,7 +76,4 @@ setInterval(function(){
     
     console.log("Chart updated.");
 }, 10000);
-
-
-
 
