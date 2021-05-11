@@ -10,11 +10,9 @@
     <link rel="stylesheet" href="css/master.css">
     <link rel="stylesheet" href="css/one.css">
 
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;1,200;1,300;1,400&display=swap" rel="stylesheet">
-
-    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.2.0/chart.js" integrity="sha512-opXrgVcTHsEVdBUZqTPlW9S8+99hNbaHmXtAdXXc61OUU6gOII5ku/PzZFqexHXc3hnK8IrJKHo+T7O4GRIJcw==" crossorigin="anonymous"></script>  
+    <script src="js/jquery-3.6.0.js" ></script>
+    <script src="js/lib_chart.js"></script>  
+    <script src="js/chart.js"></script>  
   </head>
   
   <body>
@@ -90,10 +88,14 @@
     <div class="up">
       <div class="up-left">
         <h2>Alert</h2>
+        <div class="drone">
+        </div>
       </div>
       <div class="up-right">
-        <h3> VARIABLE1 </h3>
-        <video  width="100%" height="400" controls="controls" src="videostretch1.mp4" type="video/mp4" >
+        <h3> Video </h3>
+        <video  width="100%" height="400" controls autoplay >
+          <source src="videoprovaobj1.mp4" type="video/mp4" />
+          Your browser does not support HTML video.
         </video>
       </div>
     </div>
@@ -104,11 +106,10 @@
       <div class="down-right">
     
         <canvas id="myChart"></canvas>
-
       </div>
     </div>
   </section>
-  
+
   <?php include("php/queryChart.php"); ?>
 
   <div class="ref">
@@ -185,20 +186,20 @@
 
 <script type="text/javascript">
 
-setInterval(() => {
-  $.ajax({
-    url: 'php/popolauto.php',
-    type: 'GET',
-    success: function(result){
+// setInterval(() => {
+//   $.ajax({
+//     url: 'php/popolauto.php',
+//     type: 'GET',
+//     success: function(result){
 
-    },
+//     },
 
-    error: function (xhr, ajaxOptions, thrownError) {
+//     error: function (xhr, ajaxOptions, thrownError) {
 
-  }
+//   }
 
-  });
-}, 15000);
+//   });
+// }, 10000);
 
 </script>
 
