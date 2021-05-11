@@ -23,10 +23,12 @@ for i in range(10):
         label.append("Truck")
     elif confidence[i] > 0.10 and confidence[i] <= 0.20:
         label.append("Pick-up")
-    elif confidence[i] > 0.20 and confidence[i] <= 0.55:
-        label.append("Tanker")
+    elif confidence[i] > 0.20 and confidence[i] <= 0.40:
+        label.append("Car")
+    elif confidence[i] > 0.40 and confidence[i] <= 0.60:
+        label.append("Excavator")
     else:
-        label.append("Soldier")
+        label.append("Indiviual")
 
 """
 success = []

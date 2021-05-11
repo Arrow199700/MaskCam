@@ -1,4 +1,4 @@
 <?php
-exec('C:\Users\arrow\AppData\Local\Microsoft\WindowsApps\python.exe C:\xampp\htdocs\aeronautica\py\popol.py');
+exec('C:\ProgramData\Anaconda3\python.exe C:\laragon\www\MaskCam\py\popol.py');
     ?>
 
