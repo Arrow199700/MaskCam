@@ -21,7 +21,12 @@ function queryChart($sql,$field){
       }
       
 }
-
+$sql = isset($_POST['sql']) ? $_POST['sql'] : "";
+$field = isset($_POST['field']) ? $_POST['field'] : "";
+if ($sql != "" && $field != "")
+{
+  queryChart($sql, $field);
+}
 ?>
 
 
